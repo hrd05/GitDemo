@@ -35,12 +35,72 @@
 
 // queryselctorall
 
-var items = document.querySelectorAll('.list-group-item');
-var odd = document.querySelectorAll('li:nth-child(odd)');
+// var items = document.querySelectorAll('.list-group-item');
+// var odd = document.querySelectorAll('li:nth-child(odd)');
 
-items[1].style.color='green';
-//items[2].style.display='none';
+// items[1].style.color='green';
+// //items[2].style.display='none';
 
-for(var i=0;i<odd.length;i++){
-    odd[i].style.backgroundColor='green';
-}
+// for(var i=0;i<odd.length;i++){
+//     odd[i].style.backgroundColor='green';
+// }
+
+// ParentElement or ParentNode same thing
+
+//var itemList = document.querySelector('#items');
+// //parent node
+// //console.log(itemList.parentNode);
+
+// itemList.parentNode.style.backgroundColor = '#f4f4f4';
+// child node
+// console.log(itemList.childNodes);   // also incluses line breaks in the node list 
+
+// using children
+// console.log(itemList.children);
+// itemList.children[1].style.background='yellow';
+
+// console.log(itemList.firstChild);// includes line breaks
+
+//using firstElementChild
+
+// console.log(itemList.firstElementChild);
+// itemList.firstElementChild.textContent='Harsh Tanwar';
+
+//similary lastchild and lastElementChild
+
+//var inputItem = document.querySelector('input');
+//console.log(inputItem);
+//next sibling same as (firstChild parentElement)
+//console.log(inputItem.nextSibling);
+//nextELementSibling
+// console.log(inputItem.nextElementSibling);
+// inputItem.nextElementSibling.value="SEND";
+
+//console.log(inputItem.previousSibling);
+//console.log(itemList.previousElementSibling);
+
+//creating new Div
+var newDiv = document.createElement('div');
+
+// add class
+newDiv.className='hello';
+
+// add id;
+newDiv.id='hello1';
+
+//add atr
+newDiv.setAttribute('title','hello Div');
+
+// adding text 
+var newDivText = document.createTextNode('hello world');
+
+//appending to div
+newDiv.appendChild(newDivText);
+console.log(newDiv);
+
+//inserting this node wherever we want
+
+var container = document.querySelector('header .container');
+var h1 = document.querySelector('header h1');
+
+container.insertBefore(newDiv,h1);
