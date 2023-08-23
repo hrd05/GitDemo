@@ -1,106 +1,49 @@
-// const header= document.getElementById('main-header');
-// //headerTitle.innerText='harsh'; //or  use textContent
-// //console.log(headerTitle.innerHTML);
-// header.style.border='solid 3px #000';
+// dom manipulation course 4 of trvaersy media
 
-// const title = document.querySelector('.title');
-// title.style.fontWeight='bold';
-// title.style.color='green';
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
-//GetElementsByClassName
-
-// var items = document.getElementsByClassName('list-group-item');
-
-// //console.log(items);
-
-// items[2].style.background='green';
-
-// for(var i=0;i<items.length;i++){
-//     items[i].style.fontWeight = 'bold';
-// }
-// li element with no class doent change
-// now use of get element by tag name
+// submit event (add item to list when submit btn clicked)
+form.addEventListener('submit' , addItem);
+// click event (remove item from list when clicked)
+itemList.addEventListener('click' , removeItem);
 
 
-// var li = document.getElementsByTagName('li');
+// function for add item
+function addItem(e){
+    e.preventDefault();
 
-// //console.log(items);
+    // get input value;
 
-// li[2].style.background='green';
+    var newItem = document.getElementById('item').value;
+    
+    // create new li element
+    var li = document.createElement('li');
 
-// for(var i=0;i<li.length;i++){
-//     li[i].style.fontWeight = 'bold';
-//     //li[i].style.background = 'yellow';
-// }
+    li.className = 'list-group-item';
+    li.appendChild(document.createTextNode(newItem));       
+    
+    // create del button
+    var delbtn = document.createElement('button');
+    var editBtn = document.createElement('button');
+    //add class
+    editBtn.className = 'btn btn-sm btn-dark float-right';
+    delbtn.className = 'btn btn-danger btn-sm float-right delete';    
 
-// queryselctorall
+    delbtn.appendChild(document.createTextNode('X'));
+    editBtn.appendChild(document.createTextNode('Edit'));
+    //add btn to li
+    li.appendChild(delbtn);
+    li.appendChild(editBtn);
+    itemList.appendChild(li);
+}
 
-// var items = document.querySelectorAll('.list-group-item');
-// var odd = document.querySelectorAll('li:nth-child(odd)');
-
-// items[1].style.color='green';
-// //items[2].style.display='none';
-
-// for(var i=0;i<odd.length;i++){
-//     odd[i].style.backgroundColor='green';
-// }
-
-// ParentElement or ParentNode same thing
-
-//var itemList = document.querySelector('#items');
-// //parent node
-// //console.log(itemList.parentNode);
-
-// itemList.parentNode.style.backgroundColor = '#f4f4f4';
-// child node
-// console.log(itemList.childNodes);   // also incluses line breaks in the node list 
-
-// using children
-// console.log(itemList.children);
-// itemList.children[1].style.background='yellow';
-
-// console.log(itemList.firstChild);// includes line breaks
-
-//using firstElementChild
-
-// console.log(itemList.firstElementChild);
-// itemList.firstElementChild.textContent='Harsh Tanwar';
-
-//similary lastchild and lastElementChild
-
-//var inputItem = document.querySelector('input');
-//console.log(inputItem);
-//next sibling same as (firstChild parentElement)
-//console.log(inputItem.nextSibling);
-//nextELementSibling
-// console.log(inputItem.nextElementSibling);
-// inputItem.nextElementSibling.value="SEND";
-
-//console.log(inputItem.previousSibling);
-//console.log(itemList.previousElementSibling);
-
-//creating new Div
-var newDiv = document.createElement('div');
-
-// add class
-newDiv.className='hello';
-
-// add id;
-newDiv.id='hello1';
-
-//add atr
-newDiv.setAttribute('title','hello Div');
-
-// adding text 
-var newDivText = document.createTextNode('hello world');
-
-//appending to div
-newDiv.appendChild(newDivText);
-console.log(newDiv);
-
-//inserting this node wherever we want
-
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header h1');
-
-container.insertBefore(newDiv,h1);
+// function for remove item
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are u Sure')){
+            var li = e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
